@@ -53,16 +53,16 @@ def run_infinite_post_data_loop():
     engine = new_connector.create_db_connector()  # Move the engine creation outside the loop
     while True:
         sleep(random.randrange(0, 2))
-        random_row = random.randint(0, 10)
+        random_row = random.randint(0, 1000)
 
         with engine.connect() as connection:
-            geo_string = text(f"SELECT * FROM pinterest_data LIMIT {random_row}, 1")
+            geo_string = text(f"SELECT * FROM geolocation_data LIMIT {random_row}, 1")
             geo_selected_row = connection.execute(geo_string)
             
             for row in geo_selected_row:
                 geo_result = dict(row._mapping)
             
-            #... [similar blocks for geo_result and user_result]
+            #... [similar blocks for geo_result and user_result with different SQL query]
             
             print(geo_result)
             post_geo_to_api(geo_result)

@@ -28,7 +28,7 @@ new_connector = AWSDBConnector()
 def post_to_api(user_data):
     # Extract date_joined and format it, if it's a valid datetime object
     date_joined = user_data.get("date_joined")
-    formatted_date_joined = date_joined.strftime("%Y-%m-%d %H:%M:%S") if isinstance(date_joined, datetime.datetime) else None
+    formatted_date_joined = date_joined.strftime("%Y-%m-%d %H:%M:%S")
     
     # Create the payload data
     payload_data = {
@@ -58,16 +58,16 @@ def run_infinite_post_data_loop():
     engine = new_connector.create_db_connector()  # Move the engine creation outside the loop
     while True:
         sleep(random.randrange(0, 2))
-        random_row = random.randint(0, 10)
+        random_row = random.randint(0, 1000)
 
         with engine.connect() as connection:
-            user_string = text(f"SELECT * FROM pinterest_data LIMIT {random_row}, 1")
+            user_string = text(f"SELECT * FROM user_data LIMIT {random_row}, 1")
             user_selected_row = connection.execute(user_string)
             
             for row in user_selected_row:
                 user_result = dict(row._mapping)
             
-            #... [similar blocks for geo_result and user_result]
+            #... [similar blocks for geo_result and user_result with different SQL query]
             
             print(user_result)
             post_to_api(user_result)

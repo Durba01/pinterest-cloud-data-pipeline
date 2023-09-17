@@ -54,8 +54,8 @@ def run_infinite_post_data_loop():
             for row in user_selected_row:
                 user_result = dict(row._mapping)
             
-            #print(pin_result)
-            #print(geo_result)
+            print(pin_result)
+            print(geo_result)
             print(user_result)
 
 
