@@ -26,8 +26,8 @@ class AWSDBConnector:
 new_connector = AWSDBConnector()
 
 def put_geo_to_api(geo_result):
-    geo_stream_name = "streaming-0a5afda0229f-geo"
-    geo_invoke_url = f"https://uodinybje6.execute-api.us-east-1.amazonaws.com/dev/streams/geo_stream_name/record" # Replace this with your actual API URL for geo data
+    #geo_stream_name = "streaming-0a5afda0229f-geo"
+    geo_invoke_url = f"https://uodinybje6.execute-api.us-east-1.amazonaws.com/dev/streams/streaming-0a5afda0229f-geo/record" # Replace this with your actual API URL for geo data
 
     payload_data = {
         "index": geo_result["ind"],
