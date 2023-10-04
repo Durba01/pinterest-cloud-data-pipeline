@@ -26,8 +26,7 @@ class AWSDBConnector:
 new_connector = AWSDBConnector()
 
 def put_geo_to_api(geo_result):
-    #geo_stream_name = "streaming-0a5afda0229f-geo"
-    geo_invoke_url = f"https://uodinybje6.execute-api.us-east-1.amazonaws.com/dev/streams/streaming-0a5afda0229f-geo/record" # Replace this with your actual API URL for geo data
+    geo_invoke_url = "https://uodinybje6.execute-api.us-east-1.amazonaws.com/dev/streams/streaming-0a5afda0229f-geo/record"  # Replace with your actual API URL for geo data
 
     payload_data = {
         "index": geo_result["ind"],
@@ -37,15 +36,14 @@ def put_geo_to_api(geo_result):
         "country": geo_result["country"]
     }
 
+    # Define the payload structure for streaming
     payload = json.dumps({
-        "records": [
-            {
-                "value": payload_data
-            }
-        ]
+        "StreamName": "{stream-name}",  # Replace with your actual stream name
+        "Data": payload_data,
+        "PartitionKey": "country"  # Replace with a suitable partition key
     })
 
-    headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
+    headers = {'Content-Type': 'application/json'}
     response = requests.request("PUT", geo_invoke_url, headers=headers, data=payload)
     print(f'Response Status: {response.status_code}')
 
