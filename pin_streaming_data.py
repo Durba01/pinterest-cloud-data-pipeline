@@ -25,22 +25,29 @@ class AWSDBConnector:
 
 new_connector = AWSDBConnector()
 
-def put_geo_to_api(geo_result):
-    geo_invoke_url = "https://uodinybje6.execute-api.us-east-1.amazonaws.com/dev/streams/streaming-0a5afda0229f-geo/record"  # Replace with your actual API URL for geo data
+def put_pin_to_api(pin_result):
+    geo_invoke_url = "https://uodinybje6.execute-api.us-east-1.amazonaws.com/dev/streams/streaming-0a5afda0229f-pin/record"  # Replace with your actual API URL for geo data
 
     payload_data = {
-        "index": geo_result["ind"],
-        "timestamp": geo_result["timestamp"].strftime("%Y-%m-%d %H:%M:%S"),  # Formatting the datetime object to string
-        "latitude": geo_result["latitude"],
-        "longitude": geo_result["longitude"],
-        "country": geo_result["country"]
+        "index": pin_result["index"],
+        "unique_id": pin_result["unique_id"],
+        "title": pin_result["title"],
+        "description": pin_result["description"],
+        "poster_name": pin_result["poster_name"],
+        "follower_count": pin_result["follower_count"],
+        "tag_list": pin_result["tag_list"].split(","),
+        "is_image_or_video": pin_result["is_image_or_video"],
+        "image_src": pin_result["image_src"],
+        "downloaded": pin_result["downloaded"],
+        "save_location": pin_result["save_location"],
+        "category": pin_result["category"]
     }
 
     # Define the payload structure for streaming
     payload = json.dumps({
         "StreamName": "{stream-name}",  # Replace with your actual stream name
         "Data": payload_data,
-        "PartitionKey": "country"  # Replace with a suitable partition key
+        "PartitionKey": "category"  # Replace with a suitable partition key
     })
 
     headers = {'Content-Type': 'application/json'}
@@ -55,15 +62,15 @@ def run_infinite_post_data_loop():
         random_row = random.randint(0, 1000)
 
         with engine.connect() as connection:
-            geo_string = text(f"SELECT * FROM geolocation_data LIMIT {random_row}, 1")
-            geo_selected_row = connection.execute(geo_string)
+            pin_string = text(f"SELECT * FROM pinterest_data LIMIT {random_row}, 1")
+            pin_selected_row = connection.execute(pin_string)
             
-            for row in geo_selected_row:
-                geo_result = dict(row._mapping)
+            for row in pin_selected_row:
+                pin_result = dict(row._mapping)
             
                 # Process and post each record individually
-                print(geo_result)
-                put_geo_to_api(geo_result)
+                print(pin_result)
+                put_pin_to_api(pin_result)
             
             #... [similar blocks for other result types with different SQL queries]
 
