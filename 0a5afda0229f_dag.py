@@ -3,7 +3,7 @@ from airflow.providers.databricks.operators.databricks import DatabricksSubmitRu
 from datetime import datetime, timedelta 
 
 # Current date
-today = datetime.today()
+#today = datetime.today()
 
 # Define params for Submit Run Operator
 notebook_task = {
@@ -16,7 +16,7 @@ notebook_params = {
 }
 
 default_args = {
-    'owner': 'muhammaddurba@gmail.com',
+    'owner': '0a5afda0229f',
     'depends_on_past': False,
     'email_on_failure': False,
     'email_on_retry': False,
@@ -25,7 +25,7 @@ default_args = {
 }
 
 with DAG('0a5afda0229f_dag',
-         start_date=today,  # setting start date as today
+         start_date=22-10-2023,  # setting start date as today
          schedule_interval='@daily',  # setting it to run daily
          catchup=False,
          default_args=default_args
