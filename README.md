@@ -32,6 +32,9 @@ The primary goal of this project is to create a data processing system on AWS th
 
 ## MILESTONE 3: BACTH PROCESSING: CONFIGURE THE EC2 KAFKA CLIENT 
 
+### Aim of the Milestone
+The primary aim of this milestone is to establish a robust and scalable Kafka client on an AWS EC2 instance, optimized for efficient batch processing. This involves setting up a secure, high-performance EC2 environment, installing and configuring Kafka to handle large volumes of data, and ensuring reliable data transfer between Kafka and other components in our data pipeline. The goal is to create a system that not only supports current processing loads but is also adaptable to future scaling and operational needs.
+
 ### Task 1: Creating PEM File Locally
 
 - In Step 1, we successfully created a .pem file and highlighted the need for secure storage.
