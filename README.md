@@ -73,17 +73,39 @@ Ensure that you have also installed the IAM MSK authentication package on your E
 4. Modify the Kafka client's `client.properties` file for AWS IAM authentication.
 5. Create Kafka topics as described in [Task 4, Step 2](#task-4-creating-kafka-topics).
 
-## File Structure
+## FILE STRUCTURE
 
-- **Your_Project_Folder/**
-  - **Milestone3/**
-    - `user_posting_emulation.py`
-    - `client.properties`
-  - **kafka_folder/**
-    - **bin/**
-      - Kafka related binaries and configurations.
-  - **Your_Documents/**
-    - Any other project-related files or documentation.
+your-project-name/
+│
+├── data_emulation/
+│   ├── aws_db_connector        # Connects to AWS RDS and emulates Pinterest data
+│   ├── data_fetchers/
+│   │   ├── pin_data.py        # Fetches pin_data from AWS RDS
+│   │   ├── user_data.py       # Fetches user_data from AWS RDS
+│   │   └── geo_data.py        # Fetches geo_data from AWS RDS
+│   └── s3_to_databricks.ipynb            # Uploads emulated data from S3 bucket to databricks
+│
+├── databricks_notebooks/
+│   ├── batch_preprocessing_on_databricks.ipynb    # Databricks notebook for preprocessing batch data using PySpark
+│   └── streaming_data_from_kinesis_to_databricks_using_pyspark.ipynb   # Databricks notebook for preprocessing streaming data using PySpark
+│
+├── airflow_dags/
+│   ├── 0a5afda0229f_dag.py        # Airflow DAG for batch data processing orchestration
+│
+│
+├── Kinesis streaming/
+│   ├── pin_streaming_data.py       # Connects to AWS Kinesis for real-time pin_data streaming
+│   └── user_streaming_data.py      # Connects to AWS Kinesis for real-time user_data streaming
+        geo_streaming_data.py       # Connects to AWS Kinesis for real-time geo_data streaming
+    
+│
+├── requirements.txt                   # List of Python dependencies
+├── .env.sample                        # Sample environment file for storing sensitive data
+├── README.md                          # Project description and instructions
+├── LICENSE                            # License file
+│
+└── [other configuration and root files, like .gitignore, setup.py, etc.]
+
 
 
 ## MILESTONE 4: BACTH PROCESSING: CONNNECT MSK CLUSTER TO S3 BUCKET
