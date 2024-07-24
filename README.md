@@ -1,4 +1,4 @@
-# Pinterest-Cloud-Data-Pipeline
+![me](https://github.com/user-attachments/assets/2e54c654-7e3a-4588-86c0-b64f64047d6d)# Pinterest-Cloud-Data-Pipeline
 
 ## Project Title
 
