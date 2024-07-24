@@ -1,194 +1,194 @@
-Pinterest-Cloud-Data-Pipeline
-Project Title
+# Pinterest-Cloud-Data-Pipeline
+
+## Project Title
+
 Pinterest-Like Data Processing on AWS
 
-Table of Contents
-Description
-Progress in Milestone 3
-Installation
-Usage
-File Structure
-License
-Description
-Overview
-This project aims to replicate Pinterest's data processing system on the AWS Cloud. It involves setting up an EC2 instance as a Kafka client to connect to an IAM-authenticated MSK cluster for batch processing.
+## Table of Contents
 
-Objectives
-Establish a data processing system on AWS mimicking Pinterest's capabilities.
-Configure the EC2 Kafka client for efficient batch processing.
-Key Learnings
-Secure storage and management of .pem files for EC2 instance access.
-Establishing SSH connections to EC2 instances.
-Installing and configuring Kafka and IAM MSK authentication packages.
-Setting up IAM roles and configuring Kafka clients for AWS IAM authentication.
-Creating Kafka topics with appropriate naming conventions.
-Milestone 3: Batch Processing - Configure the EC2 Kafka Client
-Aim
-To establish a robust and scalable Kafka client on an AWS EC2 instance optimized for efficient batch processing.
+- [Description](#description)
+- [Objectives](#objectives)
+- [Key Learnings](#key-learnings)
+- [Milestones](#milestones)
+  - [Milestone 3: Batch Processing - Configure the EC2 Kafka Client](#milestone-3-batch-processing---configure-the-ec2-kafka-client)
+  - [Milestone 4: Batch Processing - Connect MSK Cluster to S3 Bucket](#milestone-4-batch-processing---connect-msk-cluster-to-s3-bucket)
+  - [Milestone 5: Batch Processing - Configuring an API Gateway](#milestone-5-batch-processing---configuring-an-api-gateway)
+  - [Milestone 6: Batch Processing - Databricks](#milestone-6-batch-processing---databricks)
+  - [Milestone 7: Batch Processing - Spark on Databricks](#milestone-7-batch-processing---spark-on-databricks)
+  - [Milestone 8: Batch Processing - AWS MWAA](#milestone-8-batch-processing---aws-mwaa)
+  - [Milestone 9: Stream Processing - AWS Kinesis](#milestone-9-stream-processing---aws-kinesis)
+- [Installation](#installation)
+- [Usage](#usage)
+- [File Structure](#file-structure)
+- [License](#license)
 
-Tasks
-Creating PEM File Locally
+## Description
 
-Securely create and store the .pem file for EC2 instance access.
-Identify the EC2 instance's Key pair name and save the .pem file accordingly.
-Connecting to the EC2 Instance
+This project aims to replicate Pinterest's data processing capabilities using AWS services. It involves setting up a robust, scalable data pipeline leveraging AWS EC2, MSK (Managed Streaming for Apache Kafka), S3, Databricks, and other AWS services to handle batch and stream processing efficiently.
 
-Follow the SSH client instructions in the EC2 console to connect to the EC2 instance.
-Setting Up Kafka on EC2 Instance
+## Objectives
 
-Install Kafka on the EC2 client machine, ensuring version compatibility with the MSK cluster.
-Install the IAM MSK authentication package for MSK cluster access.
-Configure an IAM role for MSK cluster authentication.
-Modify the client.properties file to enable AWS IAM authentication for the Kafka client.
-Creating Kafka Topics
+- Establish a data processing system on AWS mimicking Pinterest's capabilities.
+- Configure EC2 instances and Kafka for batch processing.
+- Connect MSK to S3 for automatic data storage.
+- Implement an API Gateway for data transfer.
+- Transfer and process data using Databricks.
+- Orchestrate tasks using AWS MWAA (Managed Workflow for Apache Airflow).
+- Ingest and process streaming data using AWS Kinesis.
 
-Obtain Bootstrap servers and Plaintext Apache Zookeeper connection strings from the MSK Management Console.
-Create Kafka topics with specified names, emphasizing precise naming to avoid permission errors.
-Installation
-Kafka Setup
-Follow the official Kafka installation guide for Kafka setup.
+## Key Learnings
 
-AWS EC2 and Services Configuration
-Refer to the AWS EC2 Configuration Guide for setting up the AWS EC2 instance and configuring AWS services.
+- **Secure and Efficient Data Management:** Ensuring secure storage of access credentials and configuring IAM roles and policies for secure data access and processing.
+- **Scalable Data Processing:** Setting up a scalable Kafka client and MSK cluster for handling large data volumes.
+- **Seamless Data Transfer:** Implementing API Gateways and Kafka REST Proxy for smooth data transfer between components.
+- **Advanced Data Analytics:** Leveraging Databricks and Spark for comprehensive data cleaning, transformation, and analysis.
+- **Automation and Orchestration:** Utilizing AWS MWAA to automate and orchestrate data processing tasks, enhancing efficiency.
+- **Real-time Data Processing:** Integrating AWS Kinesis for real-time data ingestion and processing, ensuring timely data updates and analysis.
 
-IAM MSK Authentication Package
-Install the IAM MSK authentication package as described in Task 3, Step 2.
+## Milestones
 
-Usage
-Ensure your EC2 instance is running and connected.
-Install Kafka and IAM MSK authentication packages on your EC2 client machine.
-Configure the IAM role as described in Task 3, Step 3.
-Modify the Kafka client's client.properties file for AWS IAM authentication.
-Create Kafka topics as described in Task 4, Step 2.
-File Structure
-graphql
-Copy code
-your-project-name/
+### Milestone 3: Batch Processing - Configure the EC2 Kafka Client
+
+**Objective:** Establish a Kafka client on an AWS EC2 instance for efficient batch processing.
+
+**Tasks:**
+
+1. **Creating PEM File Locally:**
+   - Generate and securely store a .pem file for EC2 access.
+   - Identify the EC2 instance's Key pair name.
+
+2. **Connecting to the EC2 Instance:**
+   - Follow SSH client instructions to connect to the EC2 instance.
+
+3. **Setting Up Kafka on EC2 Instance:**
+   - Install Kafka and ensure compatibility with the MSK cluster.
+   - Install IAM MSK authentication package for access.
+   - Configure IAM roles for MSK cluster authentication.
+   - Modify `client.properties` for AWS IAM authentication.
+
+4. **Creating Kafka Topics:**
+   - Obtain Bootstrap servers and connection strings from MSK.
+   - Create Kafka topics with specific names to avoid permission errors.
+
+### Milestone 4: Batch Processing - Connect MSK Cluster to S3 Bucket
+
+**Objective:** Enable automatic data storage in S3 from the MSK cluster.
+
+**Tasks:**
+
+1. **Connect MSK to S3:**
+   - Configure IAM roles and policies for access.
+   - Set up MSK Connect with custom plugins and connectors.
+   - Ensure data flows from Kafka topics to the S3 bucket.
+
+### Milestone 5: Batch Processing - Configuring an API Gateway
+
+**Objective:** Facilitate data transfer from an API to the MSK cluster and S3.
+
+**Tasks:**
+
+1. **Set Up API Gateway:**
+   - Configure Kafka REST Proxy integration.
+   - Install and configure Kafka REST Proxy on EC2.
+   - Modify scripts to send data from the API to Kafka topics.
+   - Verify data flow from the API to Kafka and storage in S3.
+
+### Milestone 6: Batch Processing - Databricks
+
+**Objective:** Transfer and prepare data from S3 to Databricks for analysis.
+
+**Tasks:**
+
+1. **Mount S3 Bucket to Databricks:**
+   - Use credentials to access S3 data.
+   - Read data into Databricks DataFrames.
+   - Organize and prepare data for further analysis.
+
+### Milestone 7: Batch Processing - Spark on Databricks
+
+**Objective:** Perform data cleaning and computation using Spark on Databricks.
+
+**Tasks:**
+
+1. **Clean and Transform Data:**
+   - Use Spark to clean and transform data.
+   - Analyze data for insights into category popularity, user behavior, and trends.
+
+### Milestone 8: Batch Processing - AWS MWAA (Managed Workflow for Apache Airflow)
+
+**Objective:** Orchestrate Databricks workloads using AWS MWAA, automating data processing tasks and scheduling Databricks Notebooks.
+
+**Tasks:**
+
+1. **Create and Upload Airflow DAGs:**
+   - Automate and schedule data processing tasks.
+   - Trigger Databricks Notebooks execution via Airflow DAGs.
+
+### Milestone 9: Stream Processing - AWS Kinesis
+
+**Objective:** Ingest and process real-time data streams using AWS Kinesis.
+
+**Tasks:**
+
+1. **Create and Manage Data Streams:**
+   - Set up Kinesis data streams for different data types.
+   - Configure REST APIs for interaction with Kinesis.
+   - Send and process streaming data, storing results in Delta Tables.
+
+## Installation
+
+### Kafka Setup
+
+Follow the [official Kafka installation guide](https://kafka.apache.org/quickstart) for Kafka setup.
+
+### AWS EC2 and Services Configuration
+
+Refer to the [AWS EC2 Configuration Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html) for setting up the AWS EC2 instance and configuring AWS services.
+
+### IAM MSK Authentication Package
+
+Install the IAM MSK authentication package as described in [Task 3, Step 2](#milestone-3-batch-processing---configure-the-ec2-kafka-client).
+
+## Usage
+
+1. Ensure your EC2 instance is running and connected.
+2. Install Kafka and IAM MSK authentication packages on your EC2 client machine.
+3. Configure the IAM role as described in [Task 3, Step 3](#milestone-3-batch-processing---configure-the-ec2-kafka-client).
+4. Modify the Kafka client's `client.properties` file for AWS IAM authentication.
+5. Create Kafka topics as described in [Task 4, Step 2](#milestone-3-batch-processing---configure-the-ec2-kafka-client).
+
+## File Structure
+
+Pinterest-Cloud-Data-Pipelines/
 │
 ├── data_emulation/
-│   ├── aws_db_connector        # Connects to AWS RDS and emulates Pinterest data
-│   ├── data_fetchers/
-│   │   ├── pin_data.py        # Fetches pin_data from AWS RDS
-│   │   ├── user_data.py       # Fetches user_data from AWS RDS
-│   │   └── geo_data.py        # Fetches geo_data from AWS RDS
-│   └── s3_to_databricks.ipynb            # Uploads emulated data from S3 bucket to Databricks
+│ ├── aws_db_connector # Connects to AWS RDS and emulates Pinterest data
+│ ├── data_fetchers/
+│ │ ├── pin_data.py # Fetches pin_data from AWS RDS
+│ │ ├── user_data.py # Fetches user_data from AWS RDS
+│ │ └── geo_data.py # Fetches geo_data from AWS RDS
+│ └── s3_to_databricks.ipynb # Uploads emulated data from S3 bucket to Databricks
 │
 ├── databricks_notebooks/
-│   ├── batch_preprocessing_on_databricks.ipynb    # Databricks notebook for preprocessing batch data using PySpark
-│   └── streaming_data_from_kinesis_to_databricks_using_pyspark.ipynb   # Databricks notebook for preprocessing streaming data using PySpark
+│ ├── batch_preprocessing_on_databricks.ipynb # Databricks notebook for preprocessing batch data using PySpark
+│ └── streaming_data_from_kinesis_to_databricks_using_pyspark.ipynb # Databricks notebook for preprocessing streaming data using PySpark
 │
 ├── airflow_dags/
-│   ├── 0a5afda0229f_dag.py        # Airflow DAG for batch data processing orchestration
+│ ├── 0a5afda0229f_dag.py # Airflow DAG for batch data processing orchestration
 │
 ├── kinesis_streaming/
-│   ├── pin_streaming_data.py       # Connects to AWS Kinesis for real-time pin_data streaming
-│   └── user_streaming_data.py      # Connects to AWS Kinesis for real-time user_data streaming
-│   └── geo_streaming_data.py       # Connects to AWS Kinesis for real-time geo_data streaming
+│ ├── pin_streaming_data.py # Connects to AWS Kinesis for real-time pin_data streaming
+│ └── user_streaming_data.py # Connects to AWS Kinesis for real-time user_data streaming
+│ └── geo_streaming_data.py # Connects to AWS Kinesis for real-time geo_data streaming
 │
-├── requirements.txt                   # List of Python dependencies
-├── .env.sample                        # Sample environment file for storing sensitive data
-├── README.md                          # Project description and instructions
-├── LICENSE                            # License file
+├── requirements.txt # List of Python dependencies
+├── .env.sample # Sample environment file for storing sensitive data
+├── README.md # Project description and instructions
+├── LICENSE # License file
 │
 └── [other configuration and root files, like .gitignore, setup.py, etc.]
-Milestone 4: Batch Processing - Connect MSK Cluster to S3 Bucket
-Aim
-To connect the MSK cluster to an S3 bucket, enabling automatic data storage in the designated S3 bucket.
 
-Key Learnings
-Configuring an IAM authenticated MSK cluster to connect to an S3 bucket.
-Creating custom plugins and connectors within the MSK Connect console.
-The importance of IAM roles for authentication and efficient data management.
-Installation
-Refer to the following resources for detailed installation:
+## License
 
-AWS S3 Configuration Guide
-Amazon MSK Documentation
-Download the Confluent.io Amazon S3 Connector from Confluent Hub and copy it to your S3 bucket.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Usage
-Ensure your IAM authenticated MSK cluster is operational.
-Verify your S3 bucket setup.
-Download and copy the Confluent.io Amazon S3 Connector to your S3 bucket.
-Create a custom plugin in the MSK Connect console.
-Build a connector in the MSK Connect console.
-Configure the connector with the appropriate bucket name and IAM role.
-Milestone 5: Batch Processing - Configuring an API Gateway
-Aim
-To configure an API Gateway to enable data transfer from the API to the MSK cluster and automatic storage in an S3 bucket.
-
-Key Learnings
-Setting up a Kafka REST Proxy integration for an API Gateway.
-Installing and configuring the Kafka REST Proxy on an EC2 client.
-Sending data from the API to Kafka topics and verifying data flow.
-Installation
-Refer to the following resources for detailed installation:
-
-AWS API Gateway Documentation
-Confluent package for the Kafka REST Proxy available here.
-Usage
-Ensure your API Gateway is configured.
-Install and configure the Kafka REST Proxy on your EC2 client machine.
-Modify the user_posting_emulation.py script to send data from the API to Kafka topics.
-Verify data transmission and storage in the S3 bucket.
-Milestone 6: Batch Processing - Databricks
-Aim
-To set up data transfer from an S3 bucket to Databricks for data preparation.
-
-Key Learnings
-Mounting an S3 bucket to Databricks.
-Reading data from S3 into Databricks DataFrames.
-Data organization and preparation for further analysis.
-Usage
-Ensure your Databricks account is operational.
-Mount your S3 bucket to Databricks using provided credentials.
-Read data from S3 into Databricks DataFrames.
-Create and use DataFrames for data cleaning and querying.
-Milestone 7: Batch Processing - Spark on Databricks
-Aim
-To perform data cleaning and computation using Spark on Databricks.
-
-Key Learnings
-Advanced data cleaning and computation using Spark.
-Data transformations for improved analysis.
-Insights into category popularity, user followers, and joining patterns.
-Data Cleaning and Computation Tasks
-Clean DataFrame containing Pinterest posts.
-Clean DataFrame containing geo locations.
-Clean DataFrame containing user info.
-Determine the most popular category in each country.
-Track category popularity annually.
-Identify users with the highest followers in each country.
-Determine the country with the user having the most followers.
-Identify popular categories among different age groups.
-Track user registrations by year.
-Calculate the median follower count by joining year.
-Analyze the median follower count by joining year and age group.
-Milestone 8: Batch Processing - AWS MWAA (Managed Workflow for Apache Airflow)
-Aim
-To orchestrate Databricks workloads using AWS MWAA, automating data processing tasks and scheduling Databricks Notebooks.
-
-Key Learnings
-Orchestrating Databricks workloads with AWS MWAA.
-Creating and uploading Airflow DAGs.
-Triggering orchestrated tasks.
-Usage
-Create and upload DAG to MWAA environment.
-Trigger DAG to run on Databricks Notebook.
-Milestone 9: Stream Processing - AWS Kinesis
-Aim
-To ingest and process streaming data with AWS Kinesis in real-time.
-
-Key Learnings
-Ingesting and processing streaming data with AWS Kinesis.
-Configuring REST APIs for Kinesis interaction.
-Cleaning and storing streaming data in Delta Tables.
-Stream Processing Tasks
-Create data streams using Kinesis Data Streams.
-Configure an API with Kinesis proxy integration.
-Send data to Kinesis streams.
-Read data from Kinesis streams to Databricks.
-Transform Kinesis data streams in Databricks.
-Write the streaming data to Delta Tables.
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
