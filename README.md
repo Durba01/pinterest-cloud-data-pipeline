@@ -158,7 +158,7 @@ Install the IAM MSK authentication package as described in [Task 3, Step 2](#mil
 5. Create Kafka topics as described in [Task 4, Step 2](#milestone-3-batch-processing---configure-the-ec2-kafka-client).
 
 ## File Structure
-
+'''
 Pinterest-Cloud-Data-Pipelines/
 │
 ├── data_emulation/
@@ -187,7 +187,7 @@ Pinterest-Cloud-Data-Pipelines/
 ├── LICENSE # License file
 │
 └── [other configuration and root files, like .gitignore, setup.py, etc.]
-
+'''
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
